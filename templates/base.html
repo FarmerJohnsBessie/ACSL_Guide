@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ACSL Toolkit{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'homepage' %}" class="nav-link">Base Converter</a></li>
+                <li class="nav-item"><a href="{% url 'homepage' %}" class="nav-link">Base Calculator</a></li>
+                <!-- Add more tools as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content-area">
+        {% block content %}
+        <!-- Content will be inserted here from other templates -->
+        {% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2023 ACSL Toolkit. All rights reserved.</p>
+    </footer>
+
+    <!-- Optional: Include JavaScript files -->
+</body>
+</html>
