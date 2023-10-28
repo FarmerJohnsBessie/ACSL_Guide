@@ -14,7 +14,7 @@
             <ul class="nav-list">
                 <li class="nav-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="{% url 'base_converter' %}" class="nav-link">Base Converter</a></li>
-                <li class="nav-item"><a href="{% url 'homepage' %}" class="nav-link">Base Calculator</a></li>
+                <li class="nav-item"><a href="{% url 'base_calculator' %}" class="nav-link">Base Calculator</a></li>
                 <!-- Add more tools as needed -->
             </ul>
         </nav>
@@ -30,6 +30,8 @@
         <p>&copy; 2023 ACSL Toolkit. All rights reserved.</p>
     </footer>
 
+    {% block script %}
+    {% endblock script %}
     <!-- Optional: Include JavaScript files -->
 </body>
 </html>
