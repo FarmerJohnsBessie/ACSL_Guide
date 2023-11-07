@@ -10,8 +10,18 @@
         <button type="submit">Convert</button>
     </form>
 
-    {% if result_number %}
-        <p>Result: {{ result_number }}</p>
-    {% endif %}
+
+{#    {% if result_number %}#}
+{#        <p>Result: {{ result_number }}</p>#}
+{#    {% endif %}#}
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <p>{{ message }}</p>
+        {% else %}
+            <div class="error-box">
+                <p class="error-message">Error: {{ message }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
 
 {% endblock %}

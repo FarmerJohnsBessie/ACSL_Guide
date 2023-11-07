@@ -7,6 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}ACSL Toolkit{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Optional: Include CSS files -->
+    {% block style %}
+    {% endblock style %}
+    <style>
+        .error-box {
+            background-color: #f44336; /* Red background color */
+            color: white; /* White text color */
+            padding: 5px; /* Add some padding for spacing */
+            text-align: center; /* Center the text */
+            margin: 10px 0; /* Add some margin */
+        }
+
+        /* Style for the error message text */
+        .error-message {
+            font-size: 18px; /* Font size for the error message */
+        }
+    </style>
+    <script>
+        function getCookie(name) {
+          let cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              // Search for the CSRF token cookie by name
+              if (cookie.substring(0, name.length + 1) === name + '=') {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
 </head>
 <body>
     <header class="site-header">
@@ -15,6 +50,9 @@
                 <li class="nav-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="{% url 'base_converter' %}" class="nav-link">Base Converter</a></li>
                 <li class="nav-item"><a href="{% url 'base_calculator' %}" class="nav-link">Base Calculator</a></li>
+                <li class="nav-item"><a href="{% url 'question_generator' %}" class="nav-link">Problem Generator</a></li>
+                <li class="nav-item"><a href="{% url 'recursion_solver' %}" class="nav-link">Recursion Solver</a></li>
+
                 <!-- Add more tools as needed -->
             </ul>
         </nav>

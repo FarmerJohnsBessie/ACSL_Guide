@@ -10,4 +10,5 @@ class BaseCalculatorForm(forms.Form):
     input_expression = forms.CharField(label='Input Expression', widget=forms.TextInput(attrs={'id': 'latex-input'}))
 
 class AnswerSubmissionForm(forms.Form):
-    user_answer = forms.IntegerField()
+    user_answer = forms.CharField()
+

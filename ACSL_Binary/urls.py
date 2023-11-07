@@ -21,4 +21,5 @@ from number_system import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('number_system.urls')),
+    path('api/', include('api.urls')),
 ]

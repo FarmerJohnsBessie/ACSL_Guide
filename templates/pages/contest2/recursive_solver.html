@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Recursive Solver{% endblock %}
+{% block style %}
+    <style>
+        .button-group{
+            margin: auto 0;
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+    <h1>Recursive Function Calculator</h1>
+    <form id="recursiveForm">
+        <div class="latex">
+            <p id="latex-area"></p>
+        </div>
+        <div id="equations">
+            <div class="equation">
+                <input type="text" name="equation" placeholder="Enter equation">
+                <input type="text" name="condition" placeholder="Enter condition">
+            </div>
+        </div>
+        <p id="function-label">Calculate f(x). </p>
+        <div id="variables">
+            <div class="variable">
+                <label for="value">x = </label>
+                <input type="text" id="value" name="value" placeholder="Enter value you want to calculate">
+            </div>
+        </div>
+        <br>
+        <div class="button-group">
+            <button type="button" id="addEquation">Add Equation</button>
+            <button type="button" id="removeEquation">Remove Equation</button>
+        </div>
+        <br>
+        <div class="button-group">
+            <button type="button" id="addVariable">Add Variable</button>
+            <button type="button" id="removeVariable">Remove Variable</button>
+        </div>
+        <br>
+        <button type="submit">Calculate</button>
+    </form>
+    <div id="result"></div>
+
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/solve_recursion.js' %}"></script>
+    <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% endblock script %}

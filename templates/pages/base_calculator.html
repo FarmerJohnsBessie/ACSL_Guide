@@ -15,14 +15,22 @@
 
 
 
-    {% if result_number %}
-        <p>Result: {{ result_number }}</p>
-    {% endif %}
+{#    {% if result_number %}#}
+{#        <p>Result: {{ result_number }}</p>#}
+{#    {% endif %}#}
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <p>{{ message }}</p>
+        {% else %}
+            <div class="error-box">
+                <p class="error-message">Error: {{ message }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
 
 {% endblock content%}
 
 {% block script %}
     <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="{% static 'js/latex_processing.js' %}"></script>
-    {
 {% endblock script %}
