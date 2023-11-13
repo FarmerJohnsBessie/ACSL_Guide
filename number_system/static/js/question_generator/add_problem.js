@@ -37,7 +37,7 @@ function addQuestion(){
         console.error('Error:', error);
         // Handle any errors
     });
-    window.location.replace("/question_generator");
+    window.location.replace(`/question_generator/${type}`);
 }
 
 function likeQuestion(id){
@@ -57,6 +57,6 @@ function likeQuestion(id){
         console.error('Error:', error);
         // Handle any errors
     });
-    window.location.replace("/question_generator");
+    window.location.replace(`/question_generator/${type}`);
 }
 

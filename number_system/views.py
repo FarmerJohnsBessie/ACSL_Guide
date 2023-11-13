@@ -6,10 +6,9 @@ from .forms import BaseConversionForm, BaseCalculatorForm, AnswerSubmissionForm
 from random import choice
 from api.models import Question
 from api.serializers import QuestionSerializer
-from .NumberSystem import *
-from .RecursiveFunction import *
+from number_system.utils.NumberSystem import *
+from number_system.utils.RecursiveFunction import *
 from django.contrib import messages
-
 
 
 @csrf_exempt
@@ -20,6 +19,7 @@ def index(request):
 @csrf_exempt
 def homepage(request):
     return render(request, 'pages/homepage.html')
+
 
 @csrf_exempt
 def base_converter(request):
@@ -42,6 +42,7 @@ def base_converter(request):
 
     return render(request, 'pages/base_converter.html', {'form': form})
 
+
 @csrf_exempt
 def base_calculator(request):
     result_number = None
@@ -52,18 +53,21 @@ def base_calculator(request):
             target_base = form.cleaned_data['target_base']
             input_expression = form.cleaned_data['input_expression']
             try:
-                result_number = evaluate_expression(input_expression,target_base)
+                result_number = evaluate_expression(input_expression, target_base)
                 messages.success(request, f"Conversion result: {result_number}")
             except ValueError as e:
                 messages.error(request, str(e))
-        form = BaseCalculatorForm()
     else:
         form = BaseCalculatorForm()
 
     return render(request, 'pages/base_calculator.html', {'form': form, 'result_number': result_number})
 
+
 @csrf_exempt
-def question_generator(request):
+def question_generator_homepage(request):
+    return render(request, 'pages/question_generator/question_generator_homepage.html')
+
+def question_generator(request, question_type):
     user_answer = ""
     if request.method == 'POST':
         form = AnswerSubmissionForm(request.POST)
@@ -77,12 +81,21 @@ def question_generator(request):
             correct = False
     else:
         if randint(0, 1) == 0:
-            question = choice(Question.objects.all())
-            question = QuestionSerializer(question,many=False).data
+            question = Question.objects.filter(type=question_type)
+            if question.exists():
+                question = choice(question)
+                question = QuestionSerializer(question, many=False).data
+            else:
+                question = None
+
         else:
-            question = generate_question()  # Replace with your data source
-            question['id'] = -1
-            question['likes'] = 0
+            if question_type == "Computer_Number_Systems":
+                question = generate_question()  # Replace with your data source
+                question['id'] = -1
+                question['likes'] = 0
+            else:
+                question = None
+
         request.session['question'] = question
         form = AnswerSubmissionForm()
         correct = False
@@ -93,11 +106,14 @@ def question_generator(request):
         'finished': request.method == 'POST',
         'correct': correct,
         'user_answer': user_answer,
+        'type': question_type,
     }
-    return render(request, 'pages/question_generator.html', context)
+    return render(request, 'pages/question_generator/question_generator.html', context)
 
+@csrf_exempt
 def recursion_solver(request):
     return render(request, 'pages/contest2/recursive_solver.html')
+
 
 def solve_recursion(request):
     data = json.loads(request.body)
@@ -116,9 +132,14 @@ def solve_recursion(request):
         return JsonResponse({'result': str(result)})
 
 
-def like(request,pk):
+@csrf_exempt
+def ide(request):
+    return render(request, 'pages/contest3/ide.html')
+
+
+def like(request, pk):
     question = Question.objects.get(id=pk)
-    question.likes = question.likes+1
+    question.likes = question.likes + 1
     question.save()
     response_data = {'status': 'success', 'message': 'Object updated successfully'}
     return JsonResponse(response_data)

@@ -1,7 +1,9 @@
 var latexInput = document.getElementById('latex-input');
 var latexOutput = document.getElementById('latex-output');
 
-latexInput.addEventListener('input', function() {
+latexInput.addEventListener('input', updateLatexOutput());
+
+function updateLatexOutput(){
     var latexExpression = latexInput.value;
     if(latexExpression === ""){
         latexOutput.innerHTML = ""
@@ -9,5 +11,6 @@ latexInput.addEventListener('input', function() {
         latexOutput.innerHTML = "Your Expression: \\("+ latexExpression + "\\)"
         MathJax.typeset([latexOutput]);
     }
+}
 
-});
+window.onload(updateLatexOutput())

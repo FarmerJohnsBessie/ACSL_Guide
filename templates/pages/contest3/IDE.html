@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ACSL Online IDE{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/ide/ide.css' %}">
+{% endblock style %}
+
+{% block content %}
+    <h1>ACSL Online IDE</h1>
+    <div class="editor">
+        <div class="editor__wrapper">
+            <div class="editor__body">
+                <div id="editor" class="editor__code"></div>
+            </div>
+            <div class="editor__footer">
+                <div class="editor__footer--left">
+                    <button class="editor__btn editor__run" id="run-code">Run ></button>
+                    <button class="editor__btn editor__reset">Reset ></button>
+                </div>
+                <div class="editor__footer--right">
+                    <div class="editor__console">
+                        <ul class="editor__console-logs"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="error-box">
+                <p class="error-message">Error:</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+{#    <script type="text/javascript" src="{% static 'js/lib/ace.js' %}"></script>#}
+    <script type="text/javascript" src="{% static 'js/ace_init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/parsers/aal_parser.js' %}"></script>
+{% endblock script %}

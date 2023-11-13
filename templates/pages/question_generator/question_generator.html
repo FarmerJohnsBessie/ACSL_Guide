@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ACSL Problem Generator{% endblock title%}
+
+{% block content %}
+
+    <label for="typeChoices">Select Problem Type: </label>
+    <select name="type_choice" id="typeChoices">
+        <option value="Computer_Number_Systems" {% if type == 'Computer_Number_System' %}selected{% endif %}>Computer Number Systems</option>
+        <option value="Recursive_Functions" {% if type == 'Recursive_Functions' %}selected{% endif %}>Recursive Functions</option>
+        <option value="What_Does_This_Program_Do" {% if type == 'What_Does_This_Program_Do' %}selected{% endif %}>What Does This Program Do?</option>
+        <option value="Prefix_Infix_Postfix_Notation" {% if type == 'Prefix_Infix_Postfix_Notation' %}selected{% endif %}>Prefix/Infix/Postfix Notation</option>
+        <option value="Bit_String_Flicking" {% if type == 'Bit_String_Flicking' %}selected{% endif %}>Bit-String Flicking</option>
+        <option value="LISP" {% if type == 'LISP' %}selected{% endif %}>LISP</option>
+        <option value="Boolean_Algebra" {% if type == 'Boolean_Algebra' %}selected{% endif %}>Boolean Algebra</option>
+        <option value="Data_Structures" {% if type == 'Data_Structures' %}selected{% endif %}>Data Structures</option>
+        <option value="Regular_Expressions" {% if type == 'Regular_Expressions' %}selected{% endif %}>Regular Expressions</option>
+        <option value="Graph_Theory" {% if type == 'Graph_Theory' %}selected{% endif %}>Graph Theory</option>
+        <option value="Digital_Electronics" {% if type == 'Digital_Electronics' %}selected{% endif %}>Digital Electronics</option>
+        <option value="Assembly_Language" {% if type == 'Assembly_Language' %}selected{% endif %}>Assembly Language</option>
+    </select>
+    {% if question == None %}
+        <h1>Sorry, we don't have any question for this topic :(</h1>
+    {% else %}
+        {% if finished %}
+            <h3><b>Your Submission: {{ user_answer }}</b></h3>
+            <p>Your answer is {% if correct %}correct{% else %}incorrect{% endif %}.</p>
+            {% if not correct %}<p>The correct answer is: {{ question.answer }}</p> {% endif %}
+            <a href="{% url 'question_generator' question_type=type %}">Next Problem</a>
+            <button id="like-button">Like!</button>
+            <p>Likes: {{ question.likes }}</p>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                <p>{{ question.question }}</p>
+                {{ form.as_p }}
+                <button type="submit">Submit Answer</button>
+            </form>
+        {% endif %}
+    {% endif %}
+
+
+{% endblock content%}
+
+{% block script %}
+    <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="{% static 'js/question_generator/add_problem.js' %}"></script>
+    <script>
+        var id = parseInt({{ question.id }})
+        var question = "{{ question.question }}";
+        var answer = "{{ question.answer }}";
+        var type = "{{ type }}";
+        var likes = parseInt({{ question.likes }})
+    </script>
+    <script src="{% static 'js/question_generator/change_question_type.js' %}"></script>
+{% endblock script %}

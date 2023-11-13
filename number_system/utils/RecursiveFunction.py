@@ -15,7 +15,7 @@ def f(x_val, recursion_statement, recursion_conditional):
 
                 # Recursively call f with the new x value from recursive_part
                 new_x_val = sympify(recursive_part).subs(x, x_val)
-                return f(new_x_val, recursion_statement, recursion_conditional) + sympify(statement[end + 1:])
+                return f(new_x_val, recursion_statement, recursion_conditional) + sympify(statement[end + 1:]).subs(x, x_val)
             else:
                 # Base case, directly return the evaluated statement
                 return sympify(statement).subs(x, x_val)
