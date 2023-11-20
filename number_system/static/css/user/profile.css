@@ -1,0 +1,23 @@
+.profile-view {
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.profile-view h3 {
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0056b3;
+    border-color: #004088;
+}

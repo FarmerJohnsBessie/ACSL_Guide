@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Profile{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/user/edit_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>Edit Profile</h1>
+    <form method="POST">
+        {% csrf_token %}
+            <fieldset class="mb-3">
+                <legend>Personal Information</legend>
+                {{ user_form.as_p }}
+            </fieldset>
+            <fieldset class="mb-3">
+                <legend>Additional Information</legend>
+                {{ profile_form.as_p }}
+            </fieldset>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+{% endblock %}

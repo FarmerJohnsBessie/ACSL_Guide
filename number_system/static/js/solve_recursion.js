@@ -69,17 +69,18 @@ document.getElementById("removeVariable").addEventListener("click", function () 
         numVariables--;
     }
 });
-
-document.getElementById("recursiveForm").addEventListener("submit", function (e) {
+let form = document.getElementById("recursiveForm");
+form.addEventListener("submit", function (e) {
     e.preventDefault();
-
     const formData = new FormData(this);
+    // Disable the form
+    disableForm();
+    showLoading();
+
     const equations = formData.getAll("equation");
     const conditions = formData.getAll("condition");
     const value = formData.getAll("value");
-
     const resultDiv = document.getElementById("result");
-    resultDiv.innerHTML = "Result: ";
     // Convert equations and conditions into JSON
     let json_data = {
         equations: [],
@@ -87,10 +88,24 @@ document.getElementById("recursiveForm").addEventListener("submit", function (e)
         value: [],
     };
     for (let i = 0; i < equations.length; i++) {
+        if(equations[i] === "" || conditions[i] === ""){
+            showError("Please fill all the equations and conditions")
+            enableForm();
+            hideLoading();
+            resultDiv.innerHTML = "";
+            return;
+        }
         json_data.equations.push(equations[i]);
         json_data.conditions.push(conditions[i]);
     }
     for (let i = 0; i < value.length; i++) {
+        if(value[i] === ""){
+            showError("Please fill all the values")
+            enableForm();
+            hideLoading();
+            resultDiv.innerHTML = "";
+            return;
+        }
         json_data.value.push(value[i]);
     }
     json_data = JSON.stringify(json_data);
@@ -104,6 +119,10 @@ document.getElementById("recursiveForm").addEventListener("submit", function (e)
     })
     .then(response => response.json())
     .then(responseData => {
+        // Re-enable the form
+        enableForm();
+        hideLoading();
+
         console.log(responseData.result);
         resultDiv.innerHTML += responseData.result;
         // Handle the response as needed
@@ -111,8 +130,55 @@ document.getElementById("recursiveForm").addEventListener("submit", function (e)
     .catch(error => {
         console.error('Error:', error);
         // Handle any errors
+
     });
 });
+
+// Disable form. Disable everything inside the form
+function disableForm() {
+    const form = document.getElementById("recursiveForm");
+    const inputs = form.querySelectorAll("input");
+    const submitButton = form.querySelector("button");
+    inputs.forEach(input => {
+        input.disabled = true;
+    });
+    submitButton.disabled = true;
+}
+
+// Enable form. Enable everything inside the form
+function enableForm() {
+    const form = document.getElementById("recursiveForm");
+    const inputs = form.querySelectorAll("input");
+    const submitButton = form.querySelector("button");
+    inputs.forEach(input => {
+        input.disabled = false;
+    });
+    submitButton.disabled = false;
+}
+
+// Show Loading. Show the text loading... in the response area
+function showLoading() {
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "Loading...";
+}
+
+// Hide Loading. Hide the text loading... in the response area
+function hideLoading() {
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "Result:";
+}
+
+function showError(error) {
+    const error_box = document.getElementById("error-box");
+    error_box.style.display = "block";
+    error_box.innerHTML = error;
+}
+
+function hideError() {
+    const error_box = document.getElementById("error-box");
+    error_box.style.display = "none";
+    error_box.innerHTML = "";
+}
 
 // Define the change detection function
 function handleInputChange() {
@@ -128,10 +194,6 @@ function handleInputChange() {
     let piecewiseContent = "\\[f(x) = \\begin{cases}";
 
     for (let i = 0; i < equations.length; i++) {
-        // if(equations[i] === "" || conditions[i] === ""){
-        //     continue;
-        // }
-        // Add the LaTeX for each equation and condition
         piecewiseContent += equations[i] + " & \\text{if } " + conditions[i];
 
         // Add a newline character after each condition except the last one
@@ -145,4 +207,9 @@ function handleInputChange() {
     const latex_area = document.getElementById("latex-area");
     latex_area.innerHTML = finalLatex;
     MathJax.typeset([latex_area]);
+
+    const error_box = document.getElementById("error-box");
+    if(error_box.innerHTML !== "") {
+        hideError();
+    }
 }

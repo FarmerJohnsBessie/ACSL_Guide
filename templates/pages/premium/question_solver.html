@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Base Calculator{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/question_solver/question_solver.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div id="chat-container">
+    <div id="chat-history"></div>
+
+    <div id="input-area">
+        <textarea name="input" id="user-input" placeholder="Type your question here..."></textarea>
+        <button id="send-btn">Send</button>
+        <button id="upload-btn">Upload</button>
+        <input type="file" id="file-input" style="display: none;" />
+    </div>
+
+    <div id="uploaded-files"></div>
+</div>
+
+
+{% endblock content%}
+
+{% block script %}
+    <script src="{% static 'js/question_solver/handle_submit.js' %}"></script>
+{% endblock script %}

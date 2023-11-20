@@ -1,0 +1,42 @@
+body {
+    font-family: 'Arial', sans-serif;
+  }
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+legend {
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: #007bff;
+    border: none;
+    padding: 8px 15px;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+input[type="date"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 12px;
+}
+
+input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 12px;
+}

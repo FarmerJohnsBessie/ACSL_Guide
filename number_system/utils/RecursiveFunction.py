@@ -1,55 +1,73 @@
-from sympy import symbols, sympify
+from sys import setrecursionlimit
+setrecursionlimit(10**3)
 
-x = symbols('x')
+def f(x, statements, conditionals):
+    for i, condition in enumerate(conditionals):
+        if eval(condition):
+            statement = statements[i].replace('f()', 'f(x, statements, conditionals)')
+            return eval(statement)
+    return "No condition met"
 
-def f(x_val, recursion_statement, recursion_conditional):
-    # Use the sympify function to handle symbolic variables in the condition
-    for statement, condition in zip(recursion_statement, recursion_conditional):
-        # Check the condition for x
-        if sympify(condition).subs(x, x_val):
-            if 'f(' in statement:
-                # Extract the recursive part, assuming the format is 'f(expression)'
-                start = statement.find('f(') + 2
-                end = statement.rfind(')')
-                recursive_part = statement[start:end]
+def f2(x, y, statements, conditionals):
+    for i, condition in enumerate(conditionals):
+        if eval(condition):
+            statement = statements[i].replace('f2()', 'f2(x, y, statements, conditionals)')
+            return eval(statement)
+    return "No condition met"
 
-                # Recursively call f with the new x value from recursive_part
-                new_x_val = sympify(recursive_part).subs(x, x_val)
-                return f(new_x_val, recursion_statement, recursion_conditional) + sympify(statement[end + 1:]).subs(x, x_val)
+def convert(recursion_statements, is_two_variable):
+    recursion_statements_code = []
+    for a in recursion_statements:
+        open_bracket_cnt = 0
+        cur = ''
+        for i in range(len(a)):
+            if a[i] == '(':
+                open_bracket_cnt += 1
+            if a[i] == ')':
+                open_bracket_cnt -= 1
+            if open_bracket_cnt == 1 and a[i + 1] == ')':
+                cur += a[i]
+                cur += ',statements,conditionals'
+            elif a[i] == 'f' and is_two_variable:
+                cur += a[i]
+                cur += '2'
             else:
-                # Base case, directly return the evaluated statement
-                return sympify(statement).subs(x, x_val)
+                cur += a[i]
+        recursion_statements_code.append(cur)
+    return recursion_statements_code
 
-    # If no condition is met (which shouldn't happen), return None
-    return 'Error'
-
-x, y = symbols('x y')
-
-def evaluate_condition(condition, variables):
-    condition = condition.replace('&', ' and ').replace('|', ' or ')
-    return sympify(condition).subs(variables)
-
-def parse_recursive_statement(statement, variables):
-    if 'f(' in statement:
-        start = statement.find('f(') + 2
-        end = statement.rfind(')')
-        recursive_part = statement[start:end].split(',')
-        new_values = [sympify(expr).subs(variables) for expr in recursive_part]
-        remaining_statement = statement[end+1:]
-        return new_values, remaining_statement
-    else:
-        return None, statement
-
-def recursive_function(variables, recursion_statement, recursion_conditional):
-    for statement, condition in zip(recursion_statement, recursion_conditional):
-        if evaluate_condition(condition, variables):
-            new_values, remaining_statement = parse_recursive_statement(statement, variables)
-            if new_values:
-                new_variables = dict(zip(['x', 'y'], new_values))
-                # Call recursive function with new variables
-                val = recursive_function(new_variables, recursion_statement, recursion_conditional)
-                if val is not None:  # Check if value is not None
-                    return val + sympify(remaining_statement).subs(variables)
+def convert_conditional(conditional):
+    recursion_conditional = []
+    bad_list = ['<', '>', '=']
+    for a in conditional:
+        cur = ''
+        for i in range(len(a)):
+            if a[i] == '=' and a[i+1] != '=' and a[i-1] not in bad_list:
+                cur += '=='
             else:
-                return sympify(statement).subs(variables)
-    return None
+                cur += a[i]
+        recursion_conditional.append(cur)
+    return recursion_conditional
+
+def solve1(statement, conditional, x):
+    recursion_statement_code = convert(statement, is_two_variable=False)
+    conditional = convert_conditional(conditional)
+    result = f(x, recursion_statement_code, conditional)
+    return result
+
+def solve2(statement, conditional, x, y):
+    recursion_statements_code = convert(statement, is_two_variable=True)
+    conditional = convert_conditional(conditional)
+    result = f2(x, y, recursion_statements_code, conditional)
+    return result
+
+# inputs
+# recursion_statements = ['f(x-7)+1', 'x', 'f(x+3)']
+# recursion_conditionals = ['x>5', '0<=x<=5', 'x<0']
+
+# recursion_statements = ['f(x-y, y-1)+2', 'x+y']
+# recursion_conditionals = ['x>y', 'x<=y']
+
+# recursion_statements = ['f(x-1, y+2)+3', '2*f(x+1, y-1)-5', 'x*x+y']
+# recursion_conditionals = ['x>y', 'x<y', 'x=y']
+
