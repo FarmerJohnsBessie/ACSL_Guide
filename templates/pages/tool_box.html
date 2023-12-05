@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ACSL Tool Box{% endblock %}
+
+{% block content %}
+    <h1>Access useful tools for the ACSL</h1>
+
+    <h2>Contest 1:</h2>
+    <ul>
+        <li><a href="{% url 'base_calculator' %}">Base Calculator - Calculate math expressions with different bases</a></li>
+        <li><a href="{% url 'base_converter' %}">Base Converter - Convert numbers between different bases</a></li>
+        <li><a href="{% url 'recursion_solver' %}">Recursion Solver - Solve recursive functions</a></li>
+        <li><a href="{% url 'ide' %}">IDE - Test your assembly, LISP, and pseudo code here</a></li>
+    </ul>
+{% endblock %}
