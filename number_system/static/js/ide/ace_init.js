@@ -1,4 +1,4 @@
-const parser = require('./parsers/aal_parser');
+const parser = require('../parsers/aal_parser');
 
 var editor;
 
