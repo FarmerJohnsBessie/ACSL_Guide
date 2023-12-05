@@ -38,7 +38,7 @@ urlpatterns = [
     path('test/', views.test, name='test'),
     path('tools/', views.tools, name='tools'),
 
-    path('question/<str:pk>/', views.question, name='question'),
+    path('question/<str:pk>/', views.view_question, name='view_question'),
 
     path('ask-question/', views.ask_question, name='ask_question'),
 ]

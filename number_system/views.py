@@ -26,6 +26,7 @@ from number_system.utils import QuestionGenerateorAI
 from number_system.utils import ACSLQuestionSolver
 from number_system.utils import PCSolver
 
+
 @csrf_exempt
 def index(request):
     return render(request, 'base.html')
@@ -82,10 +83,11 @@ def base_calculator(request):
 def question_generator_homepage(request):
     return render(request, 'pages/question_generator/question_generator_homepage.html')
 
+
 def question_generator(request, question_type):
     user_answer = ""
     if request.method == 'POST':
-        user =request.user
+        user = request.user
         if user.is_authenticated:
             solver_profile = SolverProfile.objects.get(user=user)
             question_id = request.session['question']['id']
@@ -137,6 +139,7 @@ def question_generator(request, question_type):
     }
     return render(request, 'pages/question_generator/question_generator.html', context)
 
+
 @csrf_exempt
 def recursion_solver(request):
     return render(request, 'pages/contest1/recursive_solver.html')
@@ -168,9 +171,11 @@ def solve_recursion(request):
 def ide(request):
     return render(request, 'pages/contest1/IDE.html')
 
+
 @csrf_exempt
 def problem_solver(request):
     return render(request, 'pages/premium/question_solver.html')
+
 
 def like(request, pk):
     question = Question.objects.get(id=pk)
@@ -178,6 +183,7 @@ def like(request, pk):
     question.save()
     response_data = {'status': 'success', 'message': 'Object updated successfully'}
     return JsonResponse(response_data)
+
 
 class UserRegisterView(CreateView):
     template_name = 'registration/register.html'
@@ -208,9 +214,11 @@ class UserRegisterView(CreateView):
         # )
         return redirect('homepage')
 
+
 class UserLoginView(LoginView):
     template_name = 'registration/login.html'
     success_url = reverse_lazy('homepage')
+
 
 class UserPasswordResetView(PasswordResetView):
     template_name = 'registration/password_reset.html'
@@ -223,6 +231,7 @@ def logout_user(request):
     logout(request)
     # Redirect to a success page.
     return redirect('homepage')
+
 
 @login_required
 def edit_profile(request):
@@ -245,10 +254,12 @@ def edit_profile(request):
     }
     return render(request, 'pages/user/edit_profile.html', context)
 
+
 @login_required
 def view_profile(request):
     user_profile = Profile.objects.get(user=request.user)
     return render(request, 'pages/user/profile.html', {'profile': user_profile, 'user': request.user})
+
 
 @staff_member_required(login_url='admin:login')  # Redirect to admin login if not authenticated as staff
 def problem_generator(request):
@@ -261,8 +272,10 @@ def generate_questions(request, question_type):
     result = QuestionGenerateorAI.generate_question(question_type, difficulty)
     return JsonResponse({'question': result})
 
+
 def test(request):
     return render(request, 'pages/test.html')
+
 
 def tools(request):
     return render(request, 'pages/tool_box.html')
@@ -286,7 +299,7 @@ def ide_run(request):
     code = data['code']
     language = data['language']
     inputs = data['inputs']
-    result = PCSolver.solve(code,inputs)
+    result = PCSolver.solve(code, inputs)
 
     return JsonResponse({'output': result})
 
@@ -297,12 +310,12 @@ def solver_profile(request):
     return render(request, 'pages/user/solver_profile.html', {'solver_profile': solver_profile, 'user': user})
 
 
-def view_user_solver_profile(request,username):
+def view_user_solver_profile(request, username):
     user = User.objects.get(username=username)
     solver_profile = SolverProfile.objects.get(user=user)
     return render(request, 'pages/user/solver_profile.html', {'solver_profile': solver_profile, 'user': user})
 
 
-def question(request, pk):
-
-    return None
+def view_question(request, pk):
+    question = Question.objects.get(id=pk)
+    return render(request, 'pages/question_generator/view_question.html', {'question': question})

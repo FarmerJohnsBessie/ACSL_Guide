@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Question {{ question.id }} {% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/question_generator/question_generator_UI.css' %}">
+{% endblock style %}
+
+{% block content %}
+    <h2>Question</h2>
+    <div class="display-question">{{ question.question }}</div>
+    <h2>Answer</h2>
+    <p>{{ question.answer }}</p>
+
+{% endblock content%}
+
+{% block script %}
+    <script src="{% static 'js/question_solver/handle_submit.js' %}"></script>
+{% endblock script %}
