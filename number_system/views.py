@@ -1,16 +1,14 @@
 import json
-
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView
-
+from django.contrib.admin.views.decorators import staff_member_required
 from .forms import BaseConversionForm, BaseCalculatorForm, AnswerSubmissionForm, UserForm, ProfileForm
-from random import choice
+from random import choice, randint
 from api.models import Question
 from api.serializers import QuestionSerializer
-from number_system.utils.NumberSystem import *
 from django.contrib import messages
 from .utils.RecursiveFunction import solve2, solve1
 from django.shortcuts import render, redirect
@@ -21,9 +19,12 @@ from django.contrib.auth.views import LoginView, PasswordResetView
 from .forms import UserRegisterForm, UserPasswordResetForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Profile
+from .models import Profile, SolverProfile
 from django.conf import settings
-
+from number_system.utils import NumberSystem
+from number_system.utils import QuestionGenerateorAI
+from number_system.utils import ACSLQuestionSolver
+from number_system.utils import PCSolver
 
 @csrf_exempt
 def index(request):
@@ -45,7 +46,7 @@ def base_converter(request):
             input_number = form.cleaned_data['input_number']
 
             try:
-                result_number = convert_base(source_base, target_base, input_number)
+                result_number = NumberSystem.convert_base(source_base, target_base, input_number)
                 messages.success(request, f"Conversion result: {result_number}")
             except ValueError as e:
                 messages.error(request, str(e))
@@ -54,7 +55,7 @@ def base_converter(request):
     else:
         form = BaseConversionForm()
 
-    return render(request, 'pages/base_converter.html', {'form': form})
+    return render(request, 'pages/contest1/base_converter.html', {'form': form})
 
 
 @csrf_exempt
@@ -67,14 +68,14 @@ def base_calculator(request):
             target_base = form.cleaned_data['target_base']
             input_expression = form.cleaned_data['input_expression']
             try:
-                result_number = evaluate_expression(input_expression, target_base)
+                result_number = NumberSystem.evaluate_expression(input_expression, target_base)
                 messages.success(request, f"Conversion result: {result_number}")
             except ValueError as e:
                 messages.error(request, str(e))
     else:
         form = BaseCalculatorForm()
 
-    return render(request, 'pages/base_calculator.html', {'form': form, 'result_number': result_number})
+    return render(request, 'pages/contest1/base_calculator.html', {'form': form, 'result_number': result_number})
 
 
 @csrf_exempt
@@ -84,6 +85,13 @@ def question_generator_homepage(request):
 def question_generator(request, question_type):
     user_answer = ""
     if request.method == 'POST':
+        user =request.user
+        if user.is_authenticated:
+            solver_profile = SolverProfile.objects.get(user=user)
+            question_id = request.session['question']['id']
+            question = Question.objects.get(id=question_id)
+            solver_profile.questions_solved.add(question)
+            solver_profile.save()
         form = AnswerSubmissionForm(request.POST)
         if form.is_valid():
             user_answer = form.cleaned_data['user_answer']
@@ -104,11 +112,16 @@ def question_generator(request, question_type):
 
         else:
             if question_type == "Computer_Number_Systems":
-                question = generate_question()  # Replace with your data source
+                question = NumberSystem.generate_question()  # Replace with your data source
                 question['id'] = -1
                 question['likes'] = 0
             else:
-                question = None
+                question = Question.objects.filter(type=question_type)
+                if question.exists():
+                    question = choice(question)
+                    question = QuestionSerializer(question, many=False).data
+                else:
+                    question = None
 
         request.session['question'] = question
         form = AnswerSubmissionForm()
@@ -126,7 +139,7 @@ def question_generator(request, question_type):
 
 @csrf_exempt
 def recursion_solver(request):
-    return render(request, 'pages/contest2/recursive_solver.html')
+    return render(request, 'pages/contest1/recursive_solver.html')
 
 
 def solve_recursion(request):
@@ -153,7 +166,7 @@ def solve_recursion(request):
 
 @csrf_exempt
 def ide(request):
-    return render(request, 'pages/contest3/ide.html')
+    return render(request, 'pages/contest1/IDE.html')
 
 @csrf_exempt
 def problem_solver(request):
@@ -175,6 +188,7 @@ class UserRegisterView(CreateView):
         user = form.save()
         login(self.request, user)
         Profile.objects.create(user=user)
+        SolverProfile.objects.create(user=user)
         # current_site = get_current_site(self.request)
         # mail_subject = 'Activate your account.'
         # message = render_to_string('custom_regloginapp/activation_email.html', {
@@ -234,4 +248,61 @@ def edit_profile(request):
 @login_required
 def view_profile(request):
     user_profile = Profile.objects.get(user=request.user)
-    return render(request, 'pages/user/profile.html', {'profile': user_profile})
+    return render(request, 'pages/user/profile.html', {'profile': user_profile, 'user': request.user})
+
+@staff_member_required(login_url='admin:login')  # Redirect to admin login if not authenticated as staff
+def problem_generator(request):
+    return render(request, 'pages/admin/generator.html')
+
+
+def generate_questions(request, question_type):
+    data = json.loads(request.body)
+    difficulty = data['difficulty']
+    result = QuestionGenerateorAI.generate_question(question_type, difficulty)
+    return JsonResponse({'question': result})
+
+def test(request):
+    return render(request, 'pages/test.html')
+
+def tools(request):
+    return render(request, 'pages/tool_box.html')
+
+
+def view_user_profile(request, username):
+    user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
+    return render(request, 'pages/user/profile.html', {'profile': profile, 'user': user})
+
+
+def ask_question(request):
+    data = json.loads(request.body)
+    question = data['question']
+    answer = ACSLQuestionSolver.generate_question(question)
+    return JsonResponse({'answer': answer})
+
+
+def ide_run(request):
+    data = json.loads(request.body)
+    code = data['code']
+    language = data['language']
+    inputs = data['inputs']
+    result = PCSolver.solve(code,inputs)
+
+    return JsonResponse({'output': result})
+
+
+def solver_profile(request):
+    user = request.user
+    solver_profile = SolverProfile.objects.get(user=user)
+    return render(request, 'pages/user/solver_profile.html', {'solver_profile': solver_profile, 'user': user})
+
+
+def view_user_solver_profile(request,username):
+    user = User.objects.get(username=username)
+    solver_profile = SolverProfile.objects.get(user=user)
+    return render(request, 'pages/user/solver_profile.html', {'solver_profile': solver_profile, 'user': user})
+
+
+def question(request, pk):
+
+    return None

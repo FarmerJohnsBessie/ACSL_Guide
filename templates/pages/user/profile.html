@@ -10,25 +10,31 @@
 
 
 {% block content %}
-<div class="container">
-    <h1>{{ request.user.username }}'s Profile</h1>
-    <div class="row">
-        <div class="col-md-8">
-            <div class="profile-view">
-                <h3>Personal Information</h3>
-                <p><strong>Username:</strong> {{ request.user.username }}</p>
-                <p><strong>Email:</strong> {{ request.user.email }}</p>
-                <p><strong>First Name:</strong> {{ request.user.first_name }}</p>
-                <p><strong>Last Name:</strong> {{ request.user.last_name }}</p>
+    <div class="navigation">
+      <ul>
+        <li><a href="{% url 'solver_profile' %}">Solver Profile</a></li>
+        <!-- Add other menu items if needed -->
+      </ul>
+    </div>
+    <div class="container">
+        <h1>{{ user.username }}'s Profile</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="profile-view">
+                    <h3>Personal Information</h3>
+                    <p><strong>Username:</strong> {{ user.username }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>First Name:</strong> {{ user.first_name }}</p>
+                    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
 
-                <h3>Additional Information</h3>
-                <p><strong>Bio:</strong> {{ profile.bio|linebreaksbr }}</p>
-                <p><strong>Location:</strong> {{ profile.location }}</p>
-                <p><strong>Birth date:</strong> {{ profile.birth_date|date:"Y-m-d" }}</p>
+                    <h3>Additional Information</h3>
+                    <p><strong>Bio:</strong> {{ profile.bio|linebreaksbr }}</p>
+                    <p><strong>Location:</strong> {{ profile.location }}</p>
+                    <p><strong>Birth date:</strong> {{ profile.birth_date|date:"Y-m-d" }}</p>
 
-                <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+                    <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Admin Problem Generator{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/admin/generator.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="container">
+        <select name="type_choice" id="typeChoices">
+            <option value="Computer_Number_Systems" selected>Computer Number Systems</option>
+            <option value="Recursive_Functions">Recursive Functions</option>
+            <option value="What_Does_This_Program_Do">What Does This Program Do?</option>
+            <option value="Prefix_Infix_Postfix_Notation">Prefix/Infix/Postfix Notation</option>
+            <option value="Bit_String_Flicking">Bit-String Flicking</option>
+            <option value="LISP">LISP</option>
+            <option value="Boolean_Algebra">Boolean Algebra</option>
+            <option value="Data_Structures">Data Structures</option>
+            <option value="Regular_Expressions">Regular Expressions</option>
+            <option value="Graph_Theory">Graph Theory</option>
+            <option value="Digital_Electronics">Digital Electronics</option>
+            <option value="Assembly_Language">Assembly Language</option>
+        </select>
+        <select name="difficulty_choice" id="difficulty">
+            <option value="easy" selected>Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+            <option value="insane">Insane</option>
+        </select>
+        <label for="additional-information"></label>
+        <textarea id="additional-information"></textarea>
+        <button id="generate-btn">Generate</button>
+
+        <div id="ai-output">
+            <h2>Question</h2>
+            <textarea class="text" id="question-output"></textarea>
+            <div class="display">
+                <p class="displayed-text" id="question-display">Generated question appears here...</p>
+            </div>
+            <button class="display-button"id="display-question-button">Display</button>
+
+            <h2>Steps</h2>
+            <textarea class="text" id="steps-output"></textarea>
+            <div class="display">
+                <p class="displayed-text" id="steps-display">Generated question appears here...</p>
+            </div>
+            <button class="display-button"id="display-steps-button">Display</button>
+
+            <h2>Answer</h2>
+            <textarea class="text" id="answer-output"></textarea>
+            <div class="display">
+                <p class="displayed-text" id="answer-display">Generated question appears here...</p>
+            </div>
+            <button class="display-button"id="display-answer-button">Display</button>
+
+            <h2>Difficulty</h2>
+            <div>
+                <label for="difficulty">Enter Difficulty (1-10):</label>
+                <textarea class="text-input" id="difficulty-number"></textarea>
+            </div>
+
+        </div>
+
+        <button id="add-db-btn">Add to Database</button>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/admin/generate_question.js' %}"></script>
+{% endblock %}

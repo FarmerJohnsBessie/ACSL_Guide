@@ -1,0 +1,16 @@
+.solver-info {
+  margin: 20px;
+}
+
+.solved-questions {
+  max-height: 300px; /* Set this to the height you want for your list */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.solved-questions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

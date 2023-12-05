@@ -3,6 +3,10 @@
 
 {% block title %}ACSL Problem Generator{% endblock title%}
 
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/question_generator/question_generator_UI.css' %}">
+{% endblock style %}
+
 {% block content %}
 
     <label for="typeChoices">Select Problem Type: </label>
@@ -27,13 +31,19 @@
             <h3><b>Your Submission: {{ user_answer }}</b></h3>
             <p>Your answer is {% if correct %}correct{% else %}incorrect{% endif %}.</p>
             {% if not correct %}<p>The correct answer is: {{ question.answer }}</p> {% endif %}
+            <h3>Solution:</h3>
+            {% if not question.steps == None %}
+                <p id="display-question">{{ question.steps }}</p>
+            {% else %}
+                <p>Sorry, there are no steps for this question.</p>
+            {% endif %}
             <a href="{% url 'question_generator' question_type=type %}">Next Problem</a>
             <button id="like-button">Like!</button>
             <p>Likes: {{ question.likes }}</p>
         {% else %}
             <form method="post">
                 {% csrf_token %}
-                <p>{{ question.question }}</p>
+                <p class="display-question">{{ question.question }}</p>
                 {{ form.as_p }}
                 <button type="submit">Submit Answer</button>
             </form>
@@ -47,11 +57,12 @@
     <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="{% static 'js/question_generator/add_problem.js' %}"></script>
     <script>
-        var id = parseInt({{ question.id }})
-        var question = "{{ question.question }}";
+        var id = parseInt({{ question.id }});
+        var question = "{{ question.question|escapejs }}";
         var answer = "{{ question.answer }}";
         var type = "{{ type }}";
-        var likes = parseInt({{ question.likes }})
+        var likes = parseInt({{ question.likes }});
+
     </script>
     <script src="{% static 'js/question_generator/change_question_type.js' %}"></script>
 {% endblock script %}

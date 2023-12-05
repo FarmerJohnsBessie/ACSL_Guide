@@ -35,13 +35,18 @@ document.getElementById('file-input').addEventListener('change', function(event)
     if (files.length > 0) {
         uploadedFile = files[0]; // Store the file object
         displayUploadedFile(uploadedFile);
+        console.log(uploadedFile);
     }
 });
 
 function addMessage(message, className) {
     var chatHistory = document.getElementById('chat-history');
     var messageDiv = document.createElement('div');
-    messageDiv.textContent = message;
+    var messageText = document.createElement('p');
+    messageText.textContent = message;
+    messageText.className = 'message-text';
+    // messageDiv.textContent = message;
+    messageDiv.appendChild(messageText);
     messageDiv.className = 'message ' + className;
     chatHistory.appendChild(messageDiv);
     chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to latest message
@@ -66,10 +71,28 @@ function displayUploadedFile(file) {
 
 function getAIResponse(message) {
     // Dummy response for the sake of this example
-    var response = "This is a simulated response to: " + message;
-    setTimeout(function() { // Simulate asynchronous network call
-        addMessage(response, 'ai-response');
-    }, 1000);
+    // var response = "This is a simulated response to: " + message;
+    // setTimeout(function() { // Simulate asynchronous network call
+    //     addMessage(response, 'ai-response');
+    // }, 1000);
+    var data = {'question': message};
+    fetch('/ask-question/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken, // Include the CSRF token in the request headers
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(responseData => {
+        addMessage(responseData.answer, 'ai-response');
+        // Handle the response as needed
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle any errors
+    });
 }
 
 function sendFileToServer(file) {

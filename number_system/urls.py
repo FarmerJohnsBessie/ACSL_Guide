@@ -10,9 +10,11 @@ urlpatterns = [
 
     path('question_generator/', views.question_generator_homepage, name='question_generator_homepage'),
     path('question_generator/<str:question_type>/', views.question_generator, name='question_generator'),
+    path('generate/<str:question_type>/', views.generate_questions, name='generate_question'),
 
     path('recursion_solver/', views.recursion_solver, name='recursion_solver'),
     path('IDE/', views.ide, name='ide'),
+    path('ide/run/', views.ide_run, name='ide_run'),
 
     path('update/like/<str:pk>/', views.like, name="like"),
     path('solve/recursion/', views.solve_recursion, name="solve_recursion"),
@@ -29,6 +31,14 @@ urlpatterns = [
 
     path('accounts/profile/', views.view_profile, name='profile'),
     path('accounts/profile/edit/', views.edit_profile, name='edit_profile'),
+    path('accounts/profile/solver_profile', views.solver_profile, name='solver_profile'),
+    path('accounts/profile/users/<str:username>/', views.view_user_profile, name='view_profile'),
+    path('accounts/profile/users/<str:username>/solver_profile', views.view_user_solver_profile, name='view_solver_profile'),
+    path('admin-tools/problem-generator/', views.problem_generator, name='admin_problem_generator'),
+    path('test/', views.test, name='test'),
+    path('tools/', views.tools, name='tools'),
 
+    path('question/<str:pk>/', views.question, name='question'),
 
+    path('ask-question/', views.ask_question, name='ask_question'),
 ]

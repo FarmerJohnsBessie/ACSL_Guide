@@ -21,3 +21,29 @@
     background-color: #0056b3;
     border-color: #004088;
 }
+.navigation {
+  background: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.navigation ul {
+  list-style: none;
+  padding: 0;
+}
+
+.navigation ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.navigation ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.navigation ul li a:hover {
+  background: #444;
+}

@@ -1,0 +1,70 @@
+.container {
+    max-width: 1500px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+#ai-output {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+#question, #answer {
+    white-space: pre-wrap;
+    text-align: left;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.text {
+    width: 50%; /* Adjust the width as needed */
+    height: 300px; /* Adjust the height as needed */
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    resize: none; /* Disable textarea resizing */
+}
+
+.display {
+    display: inline-block; /* Display the div and textarea on the same line */
+    vertical-align: top; /* Align the elements at the top of the line */
+    margin-right: 10px; /* Adjust margin as needed */
+}
+
+.displayed-text{
+    width: 500px; /* Adjust the width as needed */
+    height: 300px; /* Adjust the height as needed */
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    padding: 10px; /* Add padding as needed */
+    white-space: pre;
+    text-align: left;
+    overflow: scroll;
+
+}
+
+.display-button{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.text-input{
+    height: 30px;
+    width: 300px;
+}

@@ -14,7 +14,9 @@ function addQuestion(){
         type: type,
         is_multiple_choice: false, // Set to true or false as needed
         answer: answer,
+        steps: '', // Set to null if not needed
         likes: 1,
+        difficulty: 1,
         num_choices: null, // Number of choices
         choices: null, // Array of choices
     };

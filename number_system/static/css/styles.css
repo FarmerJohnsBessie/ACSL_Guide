@@ -13,24 +13,31 @@ header {
     padding: 5px 0;
     text-align: center;
 }
-
-nav ul {
-    padding: 0;
-    list-style-type: none;
-    overflow: hidden;
+nav{
+    height: 60px;
 }
 
-nav ul li {
-    float: left;
+.nav-link{
+    padding: 100px;
 }
 
-nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 10px 16px;
-    text-decoration: none;
-}
+/*nav ul {*/
+/*    padding: 0;*/
+/*    list-style-type: none;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*nav ul li {*/
+/*    float: left;*/
+/*}*/
+
+/*nav ul li a {*/
+/*    display: block;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding: 10px 16px;*/
+/*    text-decoration: none;*/
+/*}*/
 
 nav ul li a:hover {
     background-color: #111;
@@ -49,7 +56,37 @@ footer {
     color: #fff;
     text-align: center;
     padding: 8px 0;
-    position: relative;
+    position: fixed;
     bottom: 0;
     width: 100%;
+}
+.error-box {
+    background-color: #f44336; /* Red background color */
+    color: white; /* White text color */
+    padding: 5px; /* Add some padding for spacing */
+    text-align: center; /* Center the text */
+    margin: 10px 0; /* Add some margin */
+}
+
+/* Style for the error message text */
+.error-message {
+    font-size: 18px; /* Font size for the error message */
+}
+
+.collapsible-content {
+    display: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    /*margin-top: 10px;*/
+    margin-bottom: 10px;
+}
+
+/* Style for the button that toggles the collapsible content */
+.collapsible-button {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    text-align: left;
+    margin-bottom: 10px;
 }

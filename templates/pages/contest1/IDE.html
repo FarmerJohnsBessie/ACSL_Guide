@@ -4,6 +4,7 @@
 {% block title %}ACSL Online IDE{% endblock %}
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/ide/ide.css' %}">
+
 {% endblock style %}
 
 {% block content %}
@@ -13,6 +14,17 @@
             <div class="editor__body">
                 <div id="editor" class="editor__code"></div>
             </div>
+            <label for="language">Select a language:</label>
+            <select name="language" id="language">
+                <option value="assembly">Assembly</option>
+                <option value="LISP">LISP</option>
+            </select>
+            <h6>Inputs:</h6>
+            <div class="editor__footer--right">
+                <div class="editor__console">
+                    <textarea class="editor__console-logs" id="input-area"></textarea>
+                </div>
+            </div>
             <div class="editor__footer">
                 <div class="editor__footer--left">
                     <button class="editor__btn editor__run" id="run-code">Run ></button>
@@ -20,7 +32,7 @@
                 </div>
                 <div class="editor__footer--right">
                     <div class="editor__console">
-                        <ul class="editor__console-logs"></ul>
+                        <p class="editor__console-logs" id="output"></p>
                     </div>
                 </div>
             </div>
@@ -37,4 +49,5 @@
 {#    <script type="text/javascript" src="{% static 'js/lib/ace.js' %}"></script>#}
     <script type="text/javascript" src="{% static 'js/ace_init.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/parsers/aal_parser.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/handle_language_change.js' %}"></script>
 {% endblock script %}

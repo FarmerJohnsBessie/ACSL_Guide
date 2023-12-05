@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    /*font-family: Arial, sans-serif;*/
     margin: 0;
     background-color: #f5f5f5;
 }
@@ -28,7 +28,10 @@ body {
     border: 1px solid #ddd;
     margin: 5px 0;
     border-radius: 5px;
-    white-space: pre;
+    /*white-space: pre;*/
+    /*overflow: auto;*/
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .user-message {
@@ -81,4 +84,12 @@ button:hover {
     margin-top: 5px;
     border-radius: 3px;
     display: inline-block;
+}
+
+.message-text{
+    /*white-space: pre;*/
+    /*max-width: 300px;*/
+    /*overflow: hidden;*/
+
+
 }

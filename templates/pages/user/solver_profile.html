@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/user/solver_profile.css' %}">
+{% endblock %}
+
+{% block title %}Solver Profile{% endblock %}
+
+
+
+{% block content %}
+    <div class="solver-info">
+        <h2>Solver Profile</h2>
+        <p>Total Questions Solved: <span id="total-solved">0</span></p>
+        <div class="solved-questions">
+            <ul id="questions-list">
+                {% for question in questions %}
+                    <li><a href="{% url 'question' question.id %}">{{ question.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+  </div>
+{% endblock %}
