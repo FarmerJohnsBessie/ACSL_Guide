@@ -319,3 +319,5 @@ def view_user_solver_profile(request, username):
 def view_question(request, pk):
     question = Question.objects.get(id=pk)
     return render(request, 'pages/question_generator/view_question.html', {'question': question})
+
+#changes
