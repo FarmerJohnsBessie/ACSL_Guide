@@ -12,11 +12,11 @@
 {% block content %}
     <div class="solver-info">
         <h2>Solver Profile</h2>
-        <p>Total Questions Solved: <span id="total-solved">0</span></p>
+        <p>Total Questions Solved: <span id="total-solved">{{ solver_profile.number_of_questions_solved }}</span></p>
         <div class="solved-questions">
             <ul id="questions-list">
-                {% for question in questions %}
-                    <li><a href="{% url 'question' question.id %}">{{ question.title }}</a></li>
+                {% for question in solver_profile.questions_solved.all %}
+                    <li><a href="{% url 'view_question' question.id %}">{{ question.question }}</a></li>
                 {% endfor %}
             </ul>
         </div>

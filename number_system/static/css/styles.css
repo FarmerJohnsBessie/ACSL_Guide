@@ -21,24 +21,6 @@ nav{
     padding: 100px;
 }
 
-/*nav ul {*/
-/*    padding: 0;*/
-/*    list-style-type: none;*/
-/*    overflow: hidden;*/
-/*}*/
-
-/*nav ul li {*/
-/*    float: left;*/
-/*}*/
-
-/*nav ul li a {*/
-/*    display: block;*/
-/*    color: white;*/
-/*    text-align: center;*/
-/*    padding: 10px 16px;*/
-/*    text-decoration: none;*/
-/*}*/
-
 nav ul li a:hover {
     background-color: #111;
 }
@@ -89,4 +71,8 @@ footer {
     border: 1px solid #ddd;
     text-align: left;
     margin-bottom: 10px;
+}
+
+.brand {
+    font-family: 'Aquire', sans-serif;
 }

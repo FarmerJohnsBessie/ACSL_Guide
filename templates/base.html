@@ -8,7 +8,7 @@
     <title>{% block title %}ACSL Toolkit{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Optional: Include CSS files -->
     {% block style %}
     {% endblock style %}
@@ -79,40 +79,6 @@
         {% endif%}
         </div>
     </nav>
-{#    <header class="site-header">#}
-{#        <nav class="main-nav navbar navbar-expand-lg navbar-light bg-light">#}
-{#            <ul class="nav-list">#}
-{#                <li class="nav-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>#}
-{#                <li class="nav-item"><a href="{% url 'tools' %}" class="nav-link">Tool Box</a></li>#}
-{#                <li class="nav-item"><a href="{% url 'question_generator_homepage' %}" class="nav-link">Problem Generator</a></li>#}
-{#                <li class="nav-item"><a href="{% url 'problem_solver' %}" class="nav-link">Problem Solver</a></li>#}
-{#                <!-- Add more tools as needed -->#}
-{#                <div class="collapse navbar-collapse" id="navbarNavDropdown">#}
-{#                    <ul class="navbar-nav ml-auto">#}
-{#                        {% if user.is_authenticated %}#}
-{#                            <li class="nav-item dropdown">#}
-{#                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"#}
-{#                                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-{#                                    {{ user.username }}#}
-{#                                </a>#}
-{#                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
-{#                                    <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>#}
-{#                                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>#}
-{#                                </div>#}
-{#                            </li>#}
-{#                        {% else %}#}
-{#                            <li class="nav-item">#}
-{#                                <a class="nav-link" href="{% url 'login' %}">Login</a>#}
-{#                            </li>#}
-{#                            <li class="nav-item">#}
-{#                                <a class="nav-link" href="{% url 'register' %}">Register</a>#}
-{#                            </li>#}
-{#                        {% endif %}#}
-{#                    </ul>#}
-{#                </div>#}
-{#            </ul>#}
-{#        </nav>#}
-{#    </header>#}
 
     <main class="content-area">
         {% block content %}
