@@ -4,7 +4,7 @@ document.getElementById('generate-btn').addEventListener('click', function() {
     disableGeneration();
     console.log('Generating question...');
     const questionType = document.getElementById('typeChoices').value;
-    const json_data = JSON.stringify({'difficulty': document.getElementById('difficulty').value});
+    const json_data = JSON.stringify({'difficulty': document.getElementById('difficulty').value, 'additional-prompt': document.getElementById('additional-prompt').value});
     fetch(`/generate/${questionType}/`,{
         method: 'POST',
         headers: {
@@ -67,6 +67,7 @@ function clearEverything() {
     document.getElementById('steps-display').innerHTML = "";
     document.getElementById('answer-display').innerHTML = "";
     document.getElementById('difficulty-number').value = "";
+    document.getElementById('additional-prompt').value = "";
 }
 
 function disableGeneration(){
@@ -74,12 +75,14 @@ function disableGeneration(){
     // make the button not clickable
     document.getElementById('typeChoices').disabled = true;
     document.getElementById('difficulty').disabled = true;
+    document.getElementById('additional-prompt').disabled = true;
 }
 
 function enableGeneration(){
     document.getElementById('generate-btn').disabled = false;
     document.getElementById('typeChoices').disabled = false;
     document.getElementById('difficulty').disabled = false;
+    document.getElementById('additional-prompt').disabled = false;
 }
 
 
