@@ -104,26 +104,25 @@ def question_generator(request, question_type):
             question = ''
             correct = False
     else:
-        if randint(0, 1) == 0:
-            question = Question.objects.filter(type=question_type)
-            if question.exists():
-                question = choice(question)
-                question = QuestionSerializer(question, many=False).data
-            else:
-                question = None
-
+        question = Question.objects.filter(type=question_type)
+        if question.exists():
+            question = choice(question)
+            question = QuestionSerializer(question, many=False).data
         else:
-            if question_type == "Computer_Number_Systems":
-                question = NumberSystem.generate_question()  # Replace with your data source
-                question['id'] = -1
-                question['likes'] = 0
-            else:
-                question = Question.objects.filter(type=question_type)
-                if question.exists():
-                    question = choice(question)
-                    question = QuestionSerializer(question, many=False).data
-                else:
-                    question = None
+            question = None
+
+        # else:
+        #     if question_type == "Computer_Number_Systems":
+        #         question = NumberSystem.generate_question()  # Replace with your data source
+        #         question['id'] = -1
+        #         question['likes'] = 0
+        #     else:
+        #         question = Question.objects.filter(type=question_type)
+        #         if question.exists():
+        #             question = choice(question)
+        #             question = QuestionSerializer(question, many=False).data
+        #         else:
+        #             question = None
 
         request.session['question'] = question
         form = AnswerSubmissionForm()
@@ -269,7 +268,8 @@ def problem_generator(request):
 def generate_questions(request, question_type):
     data = json.loads(request.body)
     difficulty = data['difficulty']
-    result = QuestionGenerateorAI.generate_question(question_type, difficulty)
+    additional_prompts = data['additional-prompt']
+    result = QuestionGenerateorAI.generate_question(question_type, difficulty,additional_prompts)
     return JsonResponse({'question': result})
 
 
