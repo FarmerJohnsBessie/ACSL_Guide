@@ -1,0 +1,1 @@
+web: gunicorn ACSL_Binary.wsgi --log-file -
