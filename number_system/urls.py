@@ -47,4 +47,5 @@ urlpatterns = [
     path('reset/done/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('logout/', user_views.logout_user, name='logout'),
 
+
 ]
