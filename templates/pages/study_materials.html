@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - ACSL Toolkit{% endblock %}
+
+{% block content %}
+    <h1>Study Materials</h1>
+    <p>Here you can find all the study materials you need to prepare for the ACSL competition.</p>
+    <h2>About Wenhao Li</h2>
+    <a href="{% url 'study_materials_topic' 'demo' %}">About Wenhao</a>
+{% endblock %}
+
+

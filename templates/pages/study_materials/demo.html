@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - ACSL Toolkit{% endblock %}
+
+{% block content %}
+    <h1>Wenhao Li very good at math and coding.</h1>
+    <input id="text"></input>
+    <button id="submit">Submit</button>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/study_materials/handle_question_submit.js' %}"></script>
+{% endblock script %}

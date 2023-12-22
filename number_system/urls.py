@@ -1,6 +1,6 @@
 from django.urls import path
 from number_system.view import user_views, admin_views, toolbox_views, question_generator_views, extra_views, \
-    problem_solver_views
+    problem_solver_views, study_materials_views
 from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
 urlpatterns = [
@@ -47,5 +47,9 @@ urlpatterns = [
     path('reset/done/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('logout/', user_views.logout_user, name='logout'),
 
+    # =============== Study Materials ===============
+    path('study-materials/', study_materials_views.study_materials, name='study_materials'),
+    path('study-materials/<str:topic>/', study_materials_views.study_materials_topic, name='study_materials_topic'),
+    path('check-answer/<str:topic>/', study_materials_views.check_answer, name='check_answer'),
 # some changes in the branch
 ]

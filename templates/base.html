@@ -51,6 +51,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'problem_solver' %}">Problem Solver</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'study_materials' %}">Study Materials</a>
+                </li>
                 {% if request.user.is_staff %}
                     <li class="nav-item">
                             <a class="nav-link" href="{% url 'admin:index' %}">Admin Page</a>
