@@ -83,7 +83,7 @@ def edit_profile(request):
 
 @login_required
 def view_profile(request):
-    user_profile = Profile.objects.get(user=request.user)
+    user_profile, created = Profile.objects.get_or_create(user=request.user)
     return render(request, 'pages/user/profile.html', {'profile': user_profile, 'user': request.user})
 
 

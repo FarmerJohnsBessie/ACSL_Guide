@@ -1,8 +1,10 @@
-from openai import OpenAI
+from openai import OpenAI, OpenAIError
 
-client = OpenAI()
-
-thread = client.beta.threads.create()
+try:
+    client = OpenAI()
+    thread = client.beta.threads.create()
+except Exception as e:
+    pass
 
 
 def generate_question(question):
