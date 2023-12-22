@@ -9,3 +9,4 @@ def homepage(request):
 @csrf_exempt
 def test(request):
     return render(request, 'pages/test.html')
+
