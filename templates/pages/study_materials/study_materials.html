@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - ACSL Toolkit{% endblock %}
+
+{% block content %}
+    <h1>Study Materials</h1>
+    <p>Study materials for the ACSL competition.</p>
+    <h2>Study Matierals</h2>
+    <a href="{% url 'study_materials_topic' 'Computer_Number_Systems' %}">Computer_Number_Systems</a>
+{% endblock %}
+
+

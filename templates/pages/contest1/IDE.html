@@ -18,6 +18,7 @@
             <select name="language" id="language">
                 <option value="assembly">Assembly</option>
                 <option value="LISP">LISP</option>
+                <option value="pseudo">ACSL Pseudo Code</option>
             </select>
             <h6>Inputs:</h6>
             <div class="editor__footer--right">
@@ -41,6 +42,18 @@
             </div>
         </div>
     </div>
+    <iframe 
+        src="https://www.jdoodle.com/iembed/v0/TkD?embed=true" 
+        width="800" 
+        height="600"
+        title="Lisp Code Editor">
+    </iframe>
+    <iframe 
+        src="https://regex101.com?embed=true" 
+        width="800" 
+        height="600"
+        title="Lisp Code Editor">
+    </iframe>
 
 {% endblock %}
 
@@ -49,5 +62,4 @@
 {#    <script type="text/javascript" src="{% static 'js/lib/ace.js' %}"></script>#}
     <script type="text/javascript" src="{% static 'js/ide/ace_init.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/parsers/aal_parser.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/handle_language_change.js' %}"></script>
 {% endblock script %}

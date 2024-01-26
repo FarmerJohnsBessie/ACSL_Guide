@@ -7,6 +7,17 @@ window.onload = function() {
     editor.setTheme("ace/theme/monokai");
 };
 
+var language_dropdown_menu = document.getElementById("language");
+
+language_dropdown_menu.addEventListener("change", function (){
+    const selected_choice = language_dropdown_menu.value;
+    if (selected_choice === 'LISP'){
+        editor.session.setMode('ace/mode/lisp');
+    }else{
+        editor.session.setMode('ace/mode/plain_text');
+    }
+});
+
 const runCodeButton = document.getElementById("run-code");
 runCodeButton.addEventListener("click", function() {
     var code = editor.getSession().getValue();
