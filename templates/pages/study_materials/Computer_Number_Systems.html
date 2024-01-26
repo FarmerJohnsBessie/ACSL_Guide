@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Assembly Language{% endblock %}
+
+{% block content %}
+    <h1>Computer Number Systems</h1>
+    <label for="1-input">Your Answer:</label>
+    <input  id="1-input">
+    <button name='submit-btn' id="1">Submit</button>
+    <div class="result" id="1-result"></div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        var filename = "Computer_Number_Systems"
+    </script>
+    <script src="{% static 'js/study_materials/handle_question_submit.js' %}"></script>
+{% endblock script %}

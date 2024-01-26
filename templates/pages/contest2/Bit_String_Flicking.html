@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Recursive Solver{% endblock %}
+{% block style %}
+
+{% endblock style %}
+
+{% block content %}
+    <div style="padding: 30px;">
+        <h2>Bit-String Flicking Solver</h2>
+
+        <!-- Input Field -->
+        <input id="expression" class="ant-input" style="width: 300px; margin-right: 10px;" placeholder="Enter Bit-String Expression" />
+
+        <!-- Button -->
+        <button class="ant-btn ant-btn-primary" onclick="solveExpression()">Solve</button>
+
+        <!-- Output Area -->
+        <div id="output" style="margin-top: 20px;"></div>
+        
+        <h2>Bit-String Equation Solver</h2>
+        <<div>
+            <label for="bit-string-length" class="input-label">Unknown Bit String Length</label>
+            <div class="ant-select ant-select-single ant-select-show-arrow">
+                <select id="bit-string-length" class="ant-select-selector">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+        <input id="equation" class="ant-input" style="width: 300px; margin-right: 10px;" placeholder="Enter Bit-String Equation" />
+
+        <!-- Button -->
+        <button class="ant-btn ant-btn-primary" onclick="solveEquation()">Solve</button>
+
+        <!-- Output Area -->
+        <div id="output" style="margin-top: 20px;"></div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'js/toolbox/bit_string_flicking.js' %}"></script>
+{% endblock script %}

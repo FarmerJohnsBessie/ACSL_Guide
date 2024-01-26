@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.shortcuts import render
 from number_system.utils import NumberSystem, PCSolver
 from ..utils.RecursiveFunction import solve2, solve1
-
+from ..utils.PrefixInfixPostfix import output
 
 def tools(request):
     return render(request, 'pages/tool_box.html')
@@ -91,6 +91,64 @@ def ide_run(request):
     code = data['code']
     language = data['language']
     inputs = data['inputs']
-    result = PCSolver.solve(code, inputs)
+    if language == 'pseudo':
+        result = PCSolver.solve(code, inputs)
+    elif language == 'LISP':
+        result = "We are still working on this"
+    elif language == 'assembly':
+        result = "We are still working on this"
+    else:
+        result = "Internal Server Error"
 
     return JsonResponse({'output': result})
+
+
+def prefix_infix_postfix(request):
+    return render(request, 'pages/contest2/prefix_infix_postfix.html')
+
+
+def prefix_infix_postfix_solver(request):
+    data = json.loads(request.body)
+    expression = data['expression']
+    inputType = data['inputType']
+    outputType = data['outputType']
+
+    if inputType == "prefix":
+        inputType = 1
+    elif inputType == 'infix':
+        inputType = 2
+    elif inputType == 'postfix':
+        inputType = 3
+    else:
+        inputType = 4
+
+    if outputType == "prefix":
+        outputType = 1
+    elif outputType == 'infix':
+        outputType = 2
+    elif outputType == 'postfix':
+        outputType = 3
+    else:
+        outputType = 4
+
+    try:
+        result = output(expression,inputType, outputType)
+    except Exception:
+        result = "There is an error."
+    return JsonResponse({'output': result})
+
+
+def bit_string_flicking(request):
+    return render(request, 'pages/contest2/Bit_String_Flicking.html')
+
+
+def bit_string_flicking_solver(request):
+    data = json.loads(request.body)
+    expression = data['expression']
+    return JsonResponse({'output':'hi'})
+
+def bit_string_flicking_equation_solver(request):
+    data = json.loads(request.body)
+    equation = data['equation']
+    bit_string_length = data['bit_string_length']
+    return JsonResponse({'output':'hi'})

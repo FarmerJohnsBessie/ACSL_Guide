@@ -15,6 +15,11 @@ urlpatterns = [
     path('solve/recursion/', toolbox_views.solve_recursion, name="solve_recursion"),
     path('IDE/', toolbox_views.ide, name='ide'),
     path('ide/run/', toolbox_views.ide_run, name='ide_run'),
+    path('prefix_infix_postfix/', toolbox_views.prefix_infix_postfix, name='prefix_infix_postfix'),
+    path('solve/prefix_infix_postfix/', toolbox_views.prefix_infix_postfix_solver, name='prefix_infix_postfix_solver'),
+    path('bit_string_flicking/', toolbox_views.bit_string_flicking, name='bit_string_flicking'),
+    path('solve/bit_string_flicking', toolbox_views.bit_string_flicking_solver, name='bit_string_flicking_solver'),
+    path('solve/bit_string_flicking_equation/', toolbox_views.bit_string_flicking_equation_solver, name='bit_string_flicking_equation_solver'),
 
     # =============== Admin Views ===============
     path('admin-tools/problem-generator/', admin_views.problem_generator, name='admin_problem_generator'),

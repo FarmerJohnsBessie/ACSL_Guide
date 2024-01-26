@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Expression Converter{% endblock %}
+
+{% block style %}
+<!-- Include Ant Design CSS -->
+<style>
+    .input-group {
+        margin-bottom: 20px; /* Adjust the margin as needed */
+    }
+    .short-input {
+        width: 200px; /* Adjust the width as needed */
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+    <div style="padding: 30px;">
+        <h2>Expression Converter</h2>
+        <div class="input-group">
+{#            <label for="expression">Enter the expression you want to convert</label>#}
+            <input type="text" id="expression" class="ant-input short-input" placeholder="Enter expression">
+        </div>
+        <div class="input-group">
+            <select id="inputType" class="ant-select">
+                <option value="prefix">Prefix</option>
+                <option value="infix">Infix</option>
+                <option value="postfix">Postfix</option>
+            </select>
+            <select id="outputType" class="ant-select">
+                <option value="prefix">Prefix</option>
+                <option value="infix">Infix</option>
+                <option value="postfix">Postfix</option>
+            </select>
+            <button class="ant-btn ant-btn-primary" onclick="convertExpression()">Convert</button>
+        </div>
+        <h3>Output</h3>
+        <div id="output"></div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'js/toolbox/prefix_infix_postfix.js' %}"></script>
+{% endblock script %}
