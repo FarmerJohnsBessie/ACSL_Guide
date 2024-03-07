@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from api.models import Question
-from ..forms import UserForm, ProfileForm
+from ..forms import UserForm, ProfileForm, CustomAuthenticationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.urls import reverse_lazy
@@ -43,6 +43,7 @@ class UserRegisterView(CreateView):
 
 class UserLoginView(LoginView):
     template_name = 'registration/login.html'
+    form_class = CustomAuthenticationForm
     success_url = reverse_lazy('homepage')
 
 

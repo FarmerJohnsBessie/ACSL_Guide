@@ -25,13 +25,32 @@
 <body>
 <div class="container login-container">
     <div class="row">
-        <div class="col-4 content-box">
-            <h1 class="title">Login</h1>
-            <form class="login-form" method="post">
-                {% csrf_token %}
-                {{ form }}
-                <button class="login-btn btn acsl-btn" type="submit">Login</button>
-            </form>
+        <div class="col-6 content-box">
+            
+            <div style="width: 100%; position: relative; margin: auto 0;">
+                <h1 class="title">Login</h1>
+                <form class="login-form" method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field }}
+                            {% if form.is_bound %}
+                                {% if field.errors %}
+                                    <div class="error-messages">
+                                        {% for error in field.errors %}
+                                            <span class="error">{{ error }}<br></span> 
+                                        {% endfor %}
+                                        <span class="helptext">{% if field.field.help_text != None %}
+                                        	{{ field.field.help_text }}
+                                        {% endif %} </span>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <button class="login-btn btn acsl-btn" type="submit">Login</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
