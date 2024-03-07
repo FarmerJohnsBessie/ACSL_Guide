@@ -1,12 +1,58 @@
-{% extends 'base.html' %}
-
-{% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
-
-  <a href="{% url 'reset_password' %}">Forgot your password?</a>
-{% endblock %}
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block content %}#}
+{#  <h2>Login</h2>#}
+{#  <form method="post">#}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p }}#}
+{#    <button type="submit">Login</button>#}
+{#  </form>#}
+{##}
+{#  <a href="{% url 'reset_password' %}">Forgot your password?</a>#}
+{#{% endblock %}#}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Login{% endblock title %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.16.13/antd.min.css">
+    <link rel="stylesheet" href="{% static 'css/registration/login.css' %}">
+</head>
+<body>
+<div class="container login-container">
+    <div class="row">
+        <div class="col-6 content-box">
+            
+            <div style="width: 100%; position: relative; margin: auto 0;">
+                <h1 class="title">Login</h1>
+                <form class="login-form" method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field }}
+                            {% if form.is_bound %}
+                                {% if field.errors %}
+                                    <div class="error-messages">
+                                        {% for error in field.errors %}
+                                            <span class="error">{{ error }}<br></span> 
+                                        {% endfor %}
+                                        <span class="helptext">{% if field.field.help_text != None %}
+                                        	{{ field.field.help_text }}
+                                        {% endif %} </span>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <button class="login-btn btn acsl-btn" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

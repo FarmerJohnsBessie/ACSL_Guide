@@ -16,11 +16,10 @@ document.getElementById('generate-btn').addEventListener('click', function() {
     .then(response => response.json())
     .then(data => {
         enableGeneration();
-        const inputString = data.question;
-        const parts = inputString.split(/Problem:|Steps:|Answer:/);
-
-        // Remove empty strings from the result
-        const result = parts.filter(part => part.trim() !== "");
+        let inputString = data.question;
+        inputString = JSON.parse(inputString);
+        console.log(inputString);
+        let result = [inputString.question, (inputString.steps === undefined)? "No Step":inputString.steps, inputString.answer]
 
         // Output the result
         console.log(result);

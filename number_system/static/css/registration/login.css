@@ -1,0 +1,110 @@
+body {
+    /*background-color: #f7f7f7;*/
+    background: linear-gradient(to bottom, #800000, #f44336);
+}
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
+    width: 100%;
+
+}
+
+.content-box {
+    background-color: white; /* Sets the background color of the container to white */
+    width: 100%;
+    min-width: 450px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), /* Bottom shadow */ 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Slightly lighter shadow for more depth */
+    border-radius: 7px;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+
+.title {
+    margin: 20px auto;
+    text-align: center;
+    color: #800000;
+}
+
+.login-btn {
+    position: relative;
+    margin: auto;
+}
+
+.acsl-btn {
+    position: relative;
+
+    color: white;
+    background: #FF0800;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: 8px auto;
+    width: 75%;
+
+
+}
+
+.acsl-btn:hover {
+    color: white;
+    background: #800000;
+}
+
+.login-text {
+    margin: 10px auto;
+    width: 300px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    position: relative;
+    width: 75%; /* Full width */
+    padding: 8px; /* Some padding */
+    margin: 8px auto; /* Some space above and below */
+    display: flex; /* To use width 100% */
+    align-content: center;
+    border: none; /* Remove borders */
+    border-bottom: 1px solid #ccc; /* Add a bottom border */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    transition: border-color 0.2s; /* Smooth transition for border color */
+    font-size: 16px; /* Increase font size */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none; /* Remove outline on focus */
+    border-bottom: 2px solid black; /* Make bottom border thicker and darker on focus */
+}
+
+/* Placeholder styling */
+input[type="text"]::placeholder,
+input[type="email"]::placeholder
+input[type="password"]::placeholder {
+    color: #222222; /* Light grey placeholder text */
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.error-messages .error {
+    position: relative;
+    display: block;
+    color: #ff0000; /* Red text color for error messages */
+}
+
+.error-messages .helptext {
+    color: #666; /* Grey text color for help text */
+    font-size: 0.9em; /* Smaller font size */
+    display: block; /* Block display to put it on a new line */
+    margin-top: 5px; /* Space above the help text */
+}

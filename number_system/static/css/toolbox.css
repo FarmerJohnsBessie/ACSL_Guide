@@ -1,0 +1,65 @@
+.toolbox-title{
+    margin: 20px auto;
+    text-align: center;
+    color: #800000;
+}
+
+
+.top-img{
+    width: 180px;
+    display: flex;
+    position: relative;
+    margin: auto;
+    padding: 18px;
+}
+
+.col{
+    margin-top: 5px;
+}
+
+.nav-tabs .nav-item .nav-link{
+    background: #800000;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    color: white;
+    font-size: 14px;
+}
+.nav-tabs .nav-item .active{
+    background: #f44336;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+}
+
+.nav-tabs .nav-item {
+    padding:0;
+}
+
+.nav-tabs{
+    max-width: 1110px;
+    position: relative;
+    margin: auto;
+}
+
+.tab-content{
+    background: white;
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    margin: auto;
+}
+
+.tab-content .tab-pane .row{
+    position: relative;
+    margin: auto;
+}
+
+.col .card{
+    position: relative;
+    margin: auto;
+}
+
+.nav-container{
+    max-width: 1200px;
+}

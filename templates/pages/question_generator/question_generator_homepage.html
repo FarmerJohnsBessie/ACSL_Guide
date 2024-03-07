@@ -2,18 +2,45 @@
 {% load static %}
 
 {% block title %}Base Calculator{% endblock title %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/question_generator_homepage.css' %}">
+{% endblock style %}
 
 {% block content %}
-    <h1>Welcome to ACSL Question Generator</h1>
-    <h2>More than 1000+ original questions</h2>
+    <h1 class="title"><b>ACSL Question Generator</b></h1>
 
-    <button id="start_button" onclick="window.location.href='Computer_Number_Systems'">Get Started!</button>
+    <div class="content-box">
+        <h2 class="red-title">ACSL Question Generator Is An Innovative Way To Prepare for ACSL</h2>
+        <button class="btn start-btn" id="start_button" onclick="window.location.href='Computer_Number_Systems'"><b>Get Started!</b></button>
+    </div>
+    <div class="content-box">
+        <div class="row display-item">
+            <div class="col-1">
+                <img width="100%" src="{% static 'image/question-mark.png' %}">
+            </div>
+            <div class="col-9">
+                <h4>More than 1000+ original questions</h4>
+                <p>100+ questions in every topic with detailed solutions! Best way to practice for ACSL.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <img width="100%" src="{% static 'image/levels.png' %}">
+            </div>
+            <div class="col-9">
+                <h4>10 Difficulty Levels for All Divisions</h4>
+                <p>The 10 difficulty levels provide a friendly environment for students at all level. Students in all
+                    divisions can benefit from the question generator. </p>
+            </div>
+        </div>
+
+    </div>
 
 
-{% endblock content%}
+{% endblock content %}
 
 {% block script %}
-<script>
+    <script>
 
-</script>
+    </script>
 {% endblock script %}

@@ -3,7 +3,22 @@
 
 {% block title %}Home - ACSL Toolkit{% endblock %}
 
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block background %}
+    <div class="background">
+        <img class="image" src="{% static 'image/background1.png' %}"/>
+        <div class="label">
+            <img class="title-img" src="{% static 'image/title.png' %}"/>
+        </div>
+    </div>
+
+{% endblock %}
+
 {% block content %}
+
     <h1>Welcome to the ACSL Toolkit</h1>
     <p>This is the homepage of the ACSL Toolkit. You can find various tools and resources here.</p>
     <p>Explore the menu to access different tools and calculators.</p>

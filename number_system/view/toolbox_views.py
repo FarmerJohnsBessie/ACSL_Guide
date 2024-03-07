@@ -7,6 +7,7 @@ from django.shortcuts import render
 from number_system.utils import NumberSystem, PCSolver
 from ..utils.RecursiveFunction import solve2, solve1
 from ..utils.PrefixInfixPostfix import output
+from ..utils.BitStringFlicking import evaluate_expression
 
 def tools(request):
     return render(request, 'pages/tool_box.html')
@@ -145,7 +146,8 @@ def bit_string_flicking(request):
 def bit_string_flicking_solver(request):
     data = json.loads(request.body)
     expression = data['expression']
-    return JsonResponse({'output':'hi'})
+    output = evaluate_expression(expression)
+    return JsonResponse({'output':output})
 
 def bit_string_flicking_equation_solver(request):
     data = json.loads(request.body)
