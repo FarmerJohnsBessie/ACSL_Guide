@@ -17,7 +17,7 @@ class BaseCalculatorForm(forms.Form):
 
 
 class AnswerSubmissionForm(forms.Form):
-    user_answer = forms.CharField()
+    user_answer = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'pg-submit-input col-6', 'placeholder':'Enter your answer'}))
 
 
 class UserRegisterForm(UserCreationForm):

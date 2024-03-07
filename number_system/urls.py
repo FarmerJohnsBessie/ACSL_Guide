@@ -18,7 +18,7 @@ urlpatterns = [
     path('prefix_infix_postfix/', toolbox_views.prefix_infix_postfix, name='prefix_infix_postfix'),
     path('solve/prefix_infix_postfix/', toolbox_views.prefix_infix_postfix_solver, name='prefix_infix_postfix_solver'),
     path('bit_string_flicking/', toolbox_views.bit_string_flicking, name='bit_string_flicking'),
-    path('solve/bit_string_flicking', toolbox_views.bit_string_flicking_solver, name='bit_string_flicking_solver'),
+    path('solve/bit_string_flicking/', toolbox_views.bit_string_flicking_solver, name='bit_string_flicking_solver'),
     path('solve/bit_string_flicking_equation/', toolbox_views.bit_string_flicking_equation_solver, name='bit_string_flicking_equation_solver'),
 
     # =============== Admin Views ===============

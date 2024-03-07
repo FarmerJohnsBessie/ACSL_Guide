@@ -1,0 +1,46 @@
+body {
+    background-color: #f7f7f7;
+}
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-form {
+    width: 100%;
+
+}
+.content-box {
+    background-color: white; /* Sets the background color of the container to white */
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), /* Bottom shadow */
+                0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Slightly lighter shadow for more depth */
+
+}
+.title{
+    margin: 20px auto;
+    text-align: center;
+    color: #800000;
+}
+.login-btn{
+    position: relative;
+    margin: auto;
+}
+.acsl-btn{
+    position: relative;
+    margin: 10px auto;
+
+    color: white;
+    background: #FF0800;
+
+    display: flex;
+    align-content: center;
+}
+.acsl-btn:hover{
+    color: white;
+    background: #800000;
+}

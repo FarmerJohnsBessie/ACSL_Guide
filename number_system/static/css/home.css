@@ -1,0 +1,68 @@
+:root {
+    --title-font-family: "Koulen-Regular", Helvetica;
+    --title-font-weight: 400;
+    --title-font-size: 100px;
+    --title-letter-spacing: 0px;
+    --title-line-height: normal;
+    --title-font-style: normal;
+    --nav-text-font-family: "Koulen-Regular", Helvetica;
+    --nav-text-font-weight: 400;
+    --nav-text-font-size: 20px;
+    --nav-text-letter-spacing: 0px;
+    --nav-text-line-height: normal;
+    --nav-text-font-style: normal;
+    --subtext-font-family: "Koulen-Regular", Helvetica;
+    --subtext-font-weight: 400;
+    --subtext-font-size: 36px;
+    --subtext-letter-spacing: 0px;
+    --subtext-line-height: normal;
+    --subtext-font-style: normal;
+    --bodytext-1-font-family: "KoHo-Regular", Helvetica;
+    --bodytext-1-font-weight: 400;
+    --bodytext-1-font-size: 24px;
+    --bodytext-1-letter-spacing: 0px;
+    --bodytext-1-line-height: normal;
+    --bodytext-1-font-style: normal;
+    --nav-element-font-font-family: "Lexend-Regular", Helvetica;
+    --nav-element-font-font-weight: 400;
+    --nav-element-font-font-size: 20px;
+    --nav-element-font-letter-spacing: 0px;
+    --nav-element-font-line-height: normal;
+    --nav-element-font-font-style: normal;
+    --variable-collection-light-gray: rgba(243, 244, 246, 1);
+    --variable-collection-white: rgba(255, 255, 255, 1);
+    --variable-collection-dark-gray: rgba(22, 22, 22, 0.8);
+    --variable-collection-blue: rgba(37, 99, 235, 1);
+    --variable-collection-red: rgba(255, 0, 0, 1);
+    --variable-collection-red-2: rgba(255, 82, 82, 1);
+    --variable-collection-green-1: rgba(97, 173, 0, 1);
+}
+
+
+.image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /*margin-top: 60px;*/
+
+    object-fit: cover;
+}
+
+.background {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-size: cover;
+    width: 99vw; /* 100% of the viewport width */
+    height: calc(100vh - 60px);
+}
+
+.title-img {
+    width: 397px;
+    height: 90px;
+}
+
+.label {
+    position: absolute;
+    top: 410px;
+    left: 650px;
+}

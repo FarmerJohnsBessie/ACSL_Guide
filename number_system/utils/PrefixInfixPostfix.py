@@ -110,4 +110,3 @@ def output(expr, start, end):
         elif end == 3:
             return expr
 
-print(output(expr, start, end))

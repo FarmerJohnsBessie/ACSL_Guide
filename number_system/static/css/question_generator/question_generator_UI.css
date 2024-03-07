@@ -1,3 +1,84 @@
-.display-question{
+.title{
+    margin: 20px auto;
+    text-align: center;
+    color: #800000;
+}
+
+.title-bar{
+    background: #f44336;
+    color: white;
+    width: 100%;
+    padding: 6px 8px;
+}
+
+.row{
+    margin-left: 0;
+}
+
+.title-text{
+    position: relative;
+    margin: auto 0;
+    font-size: 1.65rem;
+}
+
+.title-text-levels{
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: right;
+    font-size: 1.5rem;
+}
+
+.content-box {
+    background-color: white; /* Sets the background color of the container to white */
+    border-left: 5px solid #f44336; /* Sets the left border to be 5 pixels thick and red */
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+}
+
+.header-label{
+    position: relative;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.header-selector{
+    position: relative;
+    margin-left: auto;
+}
+
+.pg-content-box{
+    background: white;
+    width: 100%;
+    padding: 20px;
+}
+
+.pg-display-question{
     white-space: pre;
+    font-size: 16px;
+    min-height: 300px;
+}
+
+.pg-submit-box{
+    background: #f0f0f0;
+    margin: auto;
+    display:flex;
+    padding: 10px;
+    justify-content: center;
+}
+
+.pg-submit-button{
+    position: relative;
+    /*margin-left: auto;*/
+    height: 30px;
+    margin-left: 15px;
+
+}
+
+.pg-submit-input{
+    margin:auto 0;
+    width: 100%
 }

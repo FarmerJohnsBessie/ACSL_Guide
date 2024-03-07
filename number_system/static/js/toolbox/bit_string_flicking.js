@@ -3,7 +3,7 @@ function solveExpression() {
     let data = {
         'expression':expression,
     }
-    fetch('/solve/prefix_infix_postfix/', {
+    fetch('/solve/bit_string_flicking/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ function solveEquation() {
         'equation':equation,
         'bit_string_length': bit_string_length,
     }
-    fetch('/solve/prefix_infix_postfix/', {
+    fetch('/solve/bit_string_flicking_equation/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -8,22 +8,34 @@
 {% endblock style %}
 
 {% block content %}
-
-    <label for="typeChoices">Select Problem Type: </label>
-    <select name="type_choice" id="typeChoices">
-        <option value="Computer_Number_Systems" {% if type == 'Computer_Number_System' %}selected{% endif %}>Computer Number Systems</option>
-        <option value="Recursive_Functions" {% if type == 'Recursive_Functions' %}selected{% endif %}>Recursive Functions</option>
-        <option value="What_Does_This_Program_Do" {% if type == 'What_Does_This_Program_Do' %}selected{% endif %}>What Does This Program Do?</option>
-        <option value="Prefix_Infix_Postfix_Notation" {% if type == 'Prefix_Infix_Postfix_Notation' %}selected{% endif %}>Prefix/Infix/Postfix Notation</option>
-        <option value="Bit_String_Flicking" {% if type == 'Bit_String_Flicking' %}selected{% endif %}>Bit-String Flicking</option>
-        <option value="LISP" {% if type == 'LISP' %}selected{% endif %}>LISP</option>
-        <option value="Boolean_Algebra" {% if type == 'Boolean_Algebra' %}selected{% endif %}>Boolean Algebra</option>
-        <option value="Data_Structures" {% if type == 'Data_Structures' %}selected{% endif %}>Data Structures</option>
-        <option value="Regular_Expressions" {% if type == 'Regular_Expressions' %}selected{% endif %}>Regular Expressions</option>
-        <option value="Graph_Theory" {% if type == 'Graph_Theory' %}selected{% endif %}>Graph Theory</option>
-        <option value="Digital_Electronics" {% if type == 'Digital_Electronics' %}selected{% endif %}>Digital Electronics</option>
-        <option value="Assembly_Language" {% if type == 'Assembly_Language' %}selected{% endif %}>Assembly Language</option>
-    </select>
+    <h1 class="title"><b>ACSL Question Generator</b></h1>
+    <div class="content-box">
+        <label class="header-label col-3" for="typeChoices"><b>Problem Type: </b></label>
+        <select class="header-selector col-3" name="type_choice" id="typeChoices">
+            <option value="Computer_Number_Systems" {% if type == 'Computer_Number_System' %}selected{% endif %}>Computer Number Systems</option>
+            <option value="Recursive_Functions" {% if type == 'Recursive_Functions' %}selected{% endif %}>Recursive Functions</option>
+            <option value="What_Does_This_Program_Do" {% if type == 'What_Does_This_Program_Do' %}selected{% endif %}>What Does This Program Do?</option>
+            <option value="Prefix_Infix_Postfix_Notation" {% if type == 'Prefix_Infix_Postfix_Notation' %}selected{% endif %}>Prefix/Infix/Postfix Notation</option>
+            <option value="Bit_String_Flicking" {% if type == 'Bit_String_Flicking' %}selected{% endif %}>Bit-String Flicking</option>
+            <option value="LISP" {% if type == 'LISP' %}selected{% endif %}>LISP</option>
+            <option value="Boolean_Algebra" {% if type == 'Boolean_Algebra' %}selected{% endif %}>Boolean Algebra</option>
+            <option value="Data_Structures" {% if type == 'Data_Structures' %}selected{% endif %}>Data Structures</option>
+            <option value="Regular_Expressions" {% if type == 'Regular_Expressions' %}selected{% endif %}>Regular Expressions</option>
+            <option value="Graph_Theory" {% if type == 'Graph_Theory' %}selected{% endif %}>Graph Theory</option>
+            <option value="Digital_Electronics" {% if type == 'Digital_Electronics' %}selected{% endif %}>Digital Electronics</option>
+            <option value="Assembly_Language" {% if type == 'Assembly_Language' %}selected{% endif %}>Assembly Language</option>
+        </select>
+    </div>
+    
+    <div class="title-bar row">
+{#        <div class="col-2">#}
+            <h3 class="title-text"><b>Problem</b></h3>
+{#        </div>#}
+        <div class="col-4"></div>
+        <div class="col-6">
+            <h3 class="title-text-levels"><b>Level: </b>{{ question.difficulty }}</h3>
+        </div>
+    </div>
     {% if question == None %}
         <h1>Sorry, we don't have any question for this topic :(</h1>
     {% else %}
@@ -41,12 +53,18 @@
             <button id="like-button">Like!</button>
             <p>Likes: {{ question.likes }}</p>
         {% else %}
-            <form method="post">
-                {% csrf_token %}
-                <p class="display-question">{{ question.question }}</p>
-                {{ form.as_p }}
-                <button type="submit">Submit Answer</button>
-            </form>
+            <div class="pg-content-box">
+                <form method="post">
+                    {% csrf_token %}
+                    <p class="pg-display-question">{{ question.question }}</p>
+                    <div class="pg-submit-box">
+                        {{ form }}
+                        <button type="submit" class="pg-submit-button">Submit Answer</button>
+                    </div>
+                    
+                </form>
+            </div>
+            
         {% endif %}
     {% endif %}
 

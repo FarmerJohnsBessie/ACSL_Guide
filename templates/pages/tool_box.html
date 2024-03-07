@@ -2,20 +2,147 @@
 {% load static %}
 
 {% block title %}ACSL Tool Box{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/toolbox.css' %}">
+{% endblock style %}
 
 {% block content %}
-    <h1>Access useful tools for the ACSL</h1>
+    <h1 class="toolbox-title"><b>ACSL Tool Box</b></h1>
+    <div class="nav-container">
+    <ul class="nav nav-tabs row" id="myTab" role="tablist">
+        <li class="nav-item col" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#contest1-tab-pane"
+                    type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><b>Contest 1</b>
+            </button>
+        </li>
+        <li class="nav-item col" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#contest2-tab-pane"
+                    type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><b>Contest 2</b>
+            </button>
+        </li>
+        <li class="nav-item col" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contest3-tab-pane"
+                    type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"><b>Contest 3</b>
+            </button>
+        </li>
+        <li class="nav-item col" role="presentation">
+            <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#contest4-tab-pane"
+                    type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false"><b>Contest 4</b>
+            </button>
+        </li>
+    </ul>
+    
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="contest1-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+             tabindex="0">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
 
-    <h2>Contest 1:</h2>
-    <ul>
-        <li><a href="{% url 'base_calculator' %}">Base Calculator - Calculate math expressions with different bases</a></li>
-        <li><a href="{% url 'base_converter' %}">Base Converter - Convert numbers between different bases</a></li>
-        <li><a href="{% url 'recursion_solver' %}">Recursion Solver - Solve recursive functions</a></li>
-        <li><a href="{% url 'ide' %}">IDE - Test your assembly, LISP, and pseudocode here</a></li>
-    </ul>
-    <h2>Contest 2:</h2>
-    <ul>
-        <li><a href="{% url 'prefix_infix_postfix' %}">Prefix Infix Postfix Converter</a></li>
-        <li><a href="{% url 'bit_string_flicking' %}">Bit-String Flicking</a></li>
-    </ul>
+                <div class="col">
+                    <div class="card h-100" style="width: 18rem;">
+                        <a href="{% url 'base_calculator' %}">
+                            <img src="{% static 'image/toolbox/binary.png' %}" class="card-img-top top-img" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'base_calculator' %}"><h5 class="card-title">Base Calculator</h5></a>
+                            <p class="card-text">
+                                Calculate math expressions with different bases
+                            </p>
+                            <a href="{% url 'base_calculator' %}" class="btn btn-primary">Go!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card col h-100" style="width: 18rem;">
+                        <a href="{% url 'base_converter' %}">
+                            <img src="{% static 'image/toolbox/brain.png' %}" class="card-img-top top-img" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'base_converter' %}"><h5 class="card-title">Base Converter</h5></a>
+                            <p class="card-text">
+                                Convert numbers between different bases
+                            </p>
+                            <a href="{% url 'base_converter' %}" class="btn btn-primary">Go!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card col h-100" style="width: 18rem;">
+                        <a href="{% url 'recursion_solver' %}">
+                            <img src="{% static 'image/toolbox/recursive.png' %}" class="card-img-top top-img" alt="...">
+                        </a>
+                        <div class="card-body ">
+                            <a href="{% url 'recursion_solver' %}"><h5 class="card-title">Recursion Solver</h5></a>
+                            <p class="card-text">
+                                Solve recursive functions
+                            </p>
+                            <a href="{% url 'recursion_solver' %}" class="btn btn-primary">Go!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card col h-100" style="width: 18rem;">
+                        <a href="{% url 'ide' %}">
+                            <img src="{% static 'image/toolbox/programming.png' %}" class="card-img-top top-img" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'ide' %}"><h5 class="card-title">ACSL IDE</h5></a>
+                            <p class="card-text">
+                                Test your assembly, LISP, and pseudocode here
+                            </p>
+                            <a href="{% url 'ide' %}" class="btn btn-primary">Go!</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="contest2-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                <div class="col">
+                    <div class="card h-100" style="width: 18rem;">
+                        <a href="{% url 'prefix_infix_postfix' %}">
+                            {#            <img src="..." class="card-img-top" alt="...">#}
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'prefix_infix_postfix' %}"><h5 class="card-title">Prefix Infix Postfix
+                                Converter</h5></a>
+                            <p class="card-text">
+                                Convert expression between prefix, infix and postfix!
+                            </p>
+                            <a href="{% url 'prefix_infix_postfix' %}" class="btn btn-primary">Go!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card col h-100" style="width: 18rem;">
+                        <a href="{% url 'bit_string_flicking' %}">
+                            {#            <img src="..." class="card-img-top" alt="...">#}
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'bit_string_flicking' %}"><h5 class="card-title">Bit-String Flicking</h5></a>
+                            <p class="card-text">
+                                Manipulating bit-strings! Evaluate a bitstring expression! Support AND, OR, XOR and
+                                NOT! Even CIRC and SHIFT are supported. Solving a bit-string expression is not supported
+                                right now...
+                            </p>
+                            <a href="{% url 'bit_string_flicking' %}}" class="btn btn-primary">Go!</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="contest3-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+            WOO
+        </div>
+        <div class="tab-pane fade" id="contest4-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
+            Fu
+        </div>
+    </div>
+    </div>
 {% endblock %}
