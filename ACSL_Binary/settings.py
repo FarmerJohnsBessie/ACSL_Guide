@@ -108,16 +108,7 @@ WSGI_APPLICATION = 'ACSL_Binary.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'railway',
-        # 'USER': 'postgres',
-        # 'PASSWORD': 'F52A-42A4-*4f4E236DfbgAce2bEbC26',
-        # 'HOST': 'roundhouse.proxy.rlwy.net',
-        # 'PORT': '24068',
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 
