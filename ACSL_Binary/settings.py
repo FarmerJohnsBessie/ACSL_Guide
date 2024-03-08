@@ -109,7 +109,6 @@ WSGI_APPLICATION = 'ACSL_Binary.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 #
 
-load_dotenv()
 DATABASES = {
     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
