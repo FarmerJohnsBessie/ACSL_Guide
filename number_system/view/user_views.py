@@ -18,7 +18,7 @@ class UserRegisterView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
+        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
         Profile.objects.create(user=user)
         SolverProfile.objects.create(user=user)
         # current_site = get_current_site(self.request)
